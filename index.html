@@ -856,77 +856,13 @@ button{
     <section class="visual" aria-label="Visuel MUR">
       <div class="orbit"></div>
 
-      <div class="mur-object">
-        <div class="mur-circle"></div>
-
-        <div class="brain-symbol">
-          <svg viewBox="0 0 400 400" role="img" aria-label="Cerveau stylisé MUR">
-            <defs>
-              <linearGradient id="brainGrad" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stop-color="#79cfff"/>
-                <stop offset="48%" stop-color="#eaf8ff"/>
-                <stop offset="52%" stop-color="#ffd0a0"/>
-                <stop offset="100%" stop-color="#f28b32"/>
-              </linearGradient>
-
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="4" result="blur"/>
-                <feMerge>
-                  <feMergeNode in="blur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-
-            <path d="M199 74
-              C160 48 103 65 86 111
-              C53 120 40 162 59 191
-              C35 224 50 272 90 284
-              C101 334 166 351 199 319
-              C232 351 297 334 310 284
-              C348 270 365 224 340 191
-              C360 158 342 119 312 111
-              C296 66 238 49 199 74Z"
-              fill="url(#brainGrad)"
-              opacity=".96"
-              filter="url(#glow)" />
-
-            <path d="M200 78 L200 322" stroke="rgba(6,20,38,.55)" stroke-width="5" stroke-linecap="round"/>
-
-            <path d="M117 125 C145 105 170 122 179 151
-                     M91 178 C130 171 161 185 179 214
-                     M111 260 C137 244 164 249 184 278"
-                  fill="none" stroke="rgba(6,20,38,.42)" stroke-width="7" stroke-linecap="round"/>
-
-            <path d="M283 125 C255 105 230 122 221 151
-                     M309 178 C270 171 239 185 221 214
-                     M289 260 C263 244 236 249 216 278"
-                  fill="none" stroke="rgba(6,20,38,.42)" stroke-width="7" stroke-linecap="round"/>
-
-            <circle cx="122" cy="126" r="8" fill="#ffffff"/>
-            <circle cx="92" cy="180" r="7" fill="#ffffff"/>
-            <circle cx="118" cy="262" r="8" fill="#ffffff"/>
-            <circle cx="278" cy="126" r="8" fill="#ffffff"/>
-            <circle cx="308" cy="180" r="7" fill="#ffffff"/>
-            <circle cx="282" cy="262" r="8" fill="#ffffff"/>
-          </svg>
-        </div>
-
-        <div class="float-card blue">
-          <strong>Mesurer</strong>
-          <span>NeuroFlex</span>
-        </div>
-
-        <div class="float-card orange">
-          <strong>Utiliser</strong>
-          <span>Outils courts</span>
-        </div>
-
-        <div class="float-card green">
-          <strong>Réguler</strong>
-          <span>Routines</span>
-        </div>
-      </div>
+  <div class="mur-object">
+  <img 
+    src="images/mur-visuel.jpg" 
+    alt="Illustration M.U.R."
+    style="width:100%; height:100%; object-fit:cover; border-radius:30px; box-shadow:0 34px 90px rgba(0,0,0,.54), 0 0 78px rgba(242,139,50,.22);"
+  >
+</div>
     </section>
   </main>
 
