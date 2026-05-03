@@ -1,1 +1,1147 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>M.U.R. — Mesurer · Utiliser · Réguler</title>
 
+<style>
+:root{
+  --navy:#061426;
+  --navy2:#0b2038;
+  --blue:#5ab4f0;
+  --blue2:#bfe7ff;
+  --orange:#f28b32;
+  --orange2:#ffbd73;
+  --green:#78b871;
+  --white:#ffffff;
+  --glass:rgba(255,255,255,.10);
+  --glass2:rgba(255,255,255,.18);
+  --text:#f6fbff;
+  --muted:#aec0d2;
+  --darktext:#13263b;
+  --soft:#f5f7fa;
+  --safe:env(safe-area-inset-bottom);
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
+  background:#061426;
+  color:white;
+}
+
+button{
+  font:inherit;
+}
+
+.app{
+  position:relative;
+  width:100vw;
+  height:100dvh;
+  min-height:620px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 76% 27%, rgba(242,139,50,.36), transparent 24%),
+    radial-gradient(circle at 52% 39%, rgba(90,180,240,.26), transparent 27%),
+    linear-gradient(135deg,#061426 0%,#081a2e 48%,#102b45 100%);
+}
+
+.app::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.32;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.72) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255,153,68,.62) 0 1px, transparent 1.5px);
+  background-size:120px 120px, 174px 174px;
+  mask-image:linear-gradient(90deg, transparent 0%, black 34%, black 100%);
+}
+
+/* HEADER */
+
+.topbar{
+  position:absolute;
+  z-index:20;
+  top:0;
+  left:0;
+  right:0;
+  height:74px;
+  padding:0 clamp(18px,4vw,60px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  line-height:.9;
+}
+
+.logo strong{
+  display:block;
+  font-size:clamp(30px,4vw,52px);
+  font-weight:950;
+  letter-spacing:.08em;
+  background:linear-gradient(90deg,#f28b32,#ffd4a1 35%,#63b7ef 74%,#ccecff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.logo span{
+  display:block;
+  margin-top:8px;
+  font-size:clamp(7px,.75vw,10px);
+  letter-spacing:.18em;
+  color:#a8bbce;
+  text-transform:uppercase;
+}
+
+.top-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.pill{
+  border:1px solid rgba(255,255,255,.20);
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.88);
+  border-radius:999px;
+  padding:10px 16px;
+  font-size:12px;
+  font-weight:850;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  cursor:pointer;
+  backdrop-filter:blur(12px);
+}
+
+.pill.primary{
+  border-color:rgba(242,139,50,.65);
+  background:linear-gradient(90deg,rgba(242,139,50,.88),rgba(90,180,240,.76));
+  color:white;
+}
+
+/* HERO */
+
+.hero{
+  position:absolute;
+  z-index:2;
+  inset:74px 0 138px 0;
+  display:grid;
+  grid-template-columns:1fr minmax(280px,.82fr);
+  gap:clamp(18px,4vw,60px);
+  align-items:center;
+  padding:0 clamp(20px,5vw,84px);
+}
+
+.copy{
+  max-width:720px;
+}
+
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:16px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  color:#cad8e6;
+  border:1px solid rgba(255,255,255,.12);
+  font-size:12px;
+  font-weight:850;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.kicker::before{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--orange);
+  box-shadow:0 0 18px rgba(242,139,50,.95);
+}
+
+.copy h1{
+  margin:0;
+  font-size:clamp(62px,9vw,130px);
+  line-height:.86;
+  letter-spacing:.035em;
+  font-weight:950;
+}
+
+.copy h2{
+  margin:16px 0;
+  max-width:740px;
+  font-size:clamp(25px,3.2vw,46px);
+  line-height:1.02;
+  font-weight:850;
+}
+
+.copy h2 span{
+  color:var(--orange2);
+}
+
+.copy p{
+  max-width:640px;
+  margin:0 0 24px;
+  color:rgba(246,251,255,.84);
+  font-size:clamp(15px,1.25vw,19px);
+  line-height:1.48;
+}
+
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.cta{
+  min-height:48px;
+  border:0;
+  border-radius:12px;
+  padding:0 22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  cursor:pointer;
+  color:white;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.cta.main{
+  background:linear-gradient(90deg,var(--orange),var(--blue));
+  box-shadow:0 14px 38px rgba(242,139,50,.22);
+}
+
+.cta.ghost{
+  border:1px solid rgba(255,255,255,.36);
+  background:rgba(255,255,255,.04);
+}
+
+/* VISUEL CENTRAL SANS IMAGE */
+
+.visual{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:360px;
+}
+
+.orbit{
+  position:absolute;
+  bottom:6%;
+  width:82%;
+  height:120px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.22);
+  transform:perspective(800px) rotateX(74deg);
+  box-shadow:
+    0 0 34px rgba(90,180,240,.26),
+    inset 0 0 24px rgba(242,139,50,.18);
+  z-index:-1;
+}
+
+.mur-object{
+  position:relative;
+  width:min(360px,72%);
+  aspect-ratio:1/1;
+  display:grid;
+  place-items:center;
+}
+
+.mur-circle{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.16), transparent 38%),
+    conic-gradient(from 210deg, rgba(90,180,240,.9), rgba(90,180,240,.2), rgba(242,139,50,.25), rgba(242,139,50,.95), rgba(90,180,240,.9));
+  filter:drop-shadow(0 0 55px rgba(90,180,240,.24));
+  opacity:.9;
+}
+
+.mur-circle::before{
+  content:"";
+  position:absolute;
+  inset:16px;
+  border-radius:50%;
+  background:rgba(6,20,38,.82);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.brain-symbol{
+  position:relative;
+  width:72%;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 32% 42%, rgba(90,180,240,.55), transparent 22%),
+    radial-gradient(circle at 68% 42%, rgba(242,139,50,.55), transparent 22%),
+    radial-gradient(circle at 50% 60%, rgba(255,255,255,.10), transparent 34%);
+}
+
+.brain-symbol svg{
+  width:86%;
+  height:86%;
+  filter:drop-shadow(0 24px 45px rgba(0,0,0,.38));
+}
+
+.float-card{
+  position:absolute;
+  min-width:126px;
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(16px);
+  box-shadow:0 18px 50px rgba(0,0,0,.24);
+}
+
+.float-card strong{
+  display:block;
+  font-size:13px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+.float-card span{
+  display:block;
+  margin-top:4px;
+  color:#c7d7e7;
+  font-size:12px;
+}
+
+.float-card.blue{
+  left:-6%;
+  top:18%;
+}
+
+.float-card.orange{
+  right:-8%;
+  bottom:18%;
+}
+
+.float-card.green{
+  left:10%;
+  bottom:0;
+}
+
+/* QUICK CARDS */
+
+.quick-cards{
+  position:absolute;
+  z-index:4;
+  left:clamp(18px,4vw,60px);
+  right:clamp(18px,4vw,60px);
+  bottom:116px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.quick-card{
+  min-height:86px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:22px;
+  background:rgba(255,255,255,.10);
+  backdrop-filter:blur(18px);
+  padding:16px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:14px;
+  align-items:center;
+  cursor:pointer;
+  color:white;
+  transition:.25s ease;
+}
+
+.quick-card:hover{
+  transform:translateY(-3px);
+  background:rgba(255,255,255,.14);
+}
+
+.icon{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  font-size:24px;
+  background:rgba(255,255,255,.10);
+}
+
+.quick-card:nth-child(1) .icon{
+  color:#89cdf7;
+  box-shadow:inset 0 0 0 1px rgba(90,180,240,.35);
+}
+
+.quick-card:nth-child(2) .icon{
+  color:#ffbd73;
+  box-shadow:inset 0 0 0 1px rgba(242,139,50,.35);
+}
+
+.quick-card:nth-child(3) .icon{
+  color:#9ad697;
+  box-shadow:inset 0 0 0 1px rgba(120,184,113,.35);
+}
+
+.quick-card h3{
+  margin:0 0 4px;
+  font-size:clamp(14px,1.25vw,18px);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+.quick-card p{
+  margin:0;
+  color:rgba(246,251,255,.72);
+  font-size:13px;
+  line-height:1.25;
+}
+
+/* MENU BAS */
+
+.bottom-dock{
+  position:absolute;
+  z-index:25;
+  left:50%;
+  bottom:max(14px,var(--safe));
+  transform:translateX(-50%);
+  width:min(760px,calc(100% - 28px));
+  min-height:84px;
+  border-radius:30px;
+  background:rgba(255,255,255,.92);
+  color:#25384f;
+  box-shadow:0 18px 70px rgba(0,0,0,.32);
+  backdrop-filter:blur(22px);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  align-items:center;
+  overflow:hidden;
+}
+
+.dock-btn{
+  position:relative;
+  height:84px;
+  border:0;
+  background:transparent;
+  color:#51657b;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+  border-right:1px solid rgba(16,32,51,.10);
+}
+
+.dock-btn:last-child{
+  border-right:0;
+}
+
+.dock-icon{
+  font-size:22px;
+  line-height:1;
+}
+
+.dock-btn.active{
+  color:#2e8fda;
+}
+
+.dock-btn.active::after{
+  content:"";
+  position:absolute;
+  bottom:9px;
+  width:38px;
+  height:3px;
+  border-radius:999px;
+  background:#2e8fda;
+}
+
+/* PANNEAUX QUI MONTENT */
+
+.sheet-backdrop{
+  position:absolute;
+  z-index:30;
+  inset:0;
+  background:rgba(0,0,0,.22);
+  opacity:0;
+  pointer-events:none;
+  transition:.28s ease;
+}
+
+.sheet-backdrop.open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.sheet{
+  position:absolute;
+  z-index:40;
+  left:50%;
+  bottom:0;
+  transform:translate(-50%,105%);
+  width:min(880px,calc(100% - 22px));
+  max-height:min(66dvh,560px);
+  color:var(--darktext);
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(24px);
+  border-radius:34px 34px 0 0;
+  box-shadow:0 -24px 90px rgba(0,0,0,.42);
+  padding:18px 20px max(20px,calc(20px + var(--safe)));
+  transition:.34s cubic-bezier(.2,.8,.2,1);
+  overflow:auto;
+}
+
+.sheet.open{
+  transform:translate(-50%,0);
+}
+
+.handle{
+  width:54px;
+  height:5px;
+  border-radius:999px;
+  background:#c7d1dd;
+  margin:0 auto 16px;
+}
+
+.sheet-head{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-start;
+  margin-bottom:16px;
+}
+
+.sheet-title{
+  margin:0;
+  color:#102033;
+  font-size:26px;
+  line-height:1.05;
+}
+
+.sheet-subtitle{
+  margin:8px 0 0;
+  color:#667789;
+  line-height:1.45;
+}
+
+.close{
+  width:42px;
+  height:42px;
+  border:0;
+  border-radius:50%;
+  background:#eef2f6;
+  color:#33475c;
+  font-size:22px;
+  cursor:pointer;
+  flex:0 0 auto;
+}
+
+.sheet-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.folder{
+  min-height:138px;
+  border-radius:22px;
+  padding:16px;
+  background:#f6f8fb;
+  border:1px solid rgba(16,32,51,.06);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.folder strong{
+  font-size:15px;
+  color:#132942;
+}
+
+.folder p{
+  margin:8px 0 0;
+  color:#69798a;
+  font-size:13px;
+  line-height:1.38;
+}
+
+.mini{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:22px;
+  margin-bottom:12px;
+  background:linear-gradient(135deg,var(--orange),var(--blue));
+}
+
+.folder:nth-child(2) .mini{
+  background:linear-gradient(135deg,#52aee8,#bfe8ff);
+}
+
+.folder:nth-child(3) .mini{
+  background:linear-gradient(135deg,#f28b32,#ffd09b);
+}
+
+.folder:nth-child(4) .mini{
+  background:linear-gradient(135deg,#74aa70,#bee5b8);
+}
+
+.folder:nth-child(5) .mini{
+  background:linear-gradient(135deg,#566b82,#aebdca);
+}
+
+.folder:nth-child(6) .mini{
+  background:linear-gradient(135deg,#f28b32,#74aa70);
+}
+
+/* TABLETTE HORIZONTALE */
+
+@media (max-width:1050px){
+  .hero{
+    grid-template-columns:1fr .75fr;
+  }
+
+  .quick-card p{
+    display:none;
+  }
+
+  .quick-card{
+    min-height:74px;
+  }
+
+  .float-card{
+    display:none;
+  }
+}
+
+/* IPAD PORTRAIT / MOBILE */
+
+@media (max-width:760px), (orientation:portrait){
+  html,body{
+    overflow:hidden;
+  }
+
+  .app{
+    min-height:100dvh;
+  }
+
+  .topbar{
+    height:66px;
+    padding:0 18px;
+  }
+
+  .top-actions .pill:not(.primary){
+    display:none;
+  }
+
+  .pill.primary{
+    padding:9px 13px;
+    font-size:10px;
+  }
+
+  .logo strong{
+    font-size:28px;
+  }
+
+  .logo span{
+    font-size:7px;
+  }
+
+  .hero{
+    inset:66px 0 230px 0;
+    grid-template-columns:1fr;
+    align-items:start;
+    padding:18px;
+    gap:10px;
+  }
+
+  .kicker{
+    margin-bottom:12px;
+    font-size:10px;
+    padding:7px 10px;
+  }
+
+  .copy h1{
+    font-size:56px;
+  }
+
+  .copy h2{
+    margin:10px 0;
+    font-size:27px;
+  }
+
+  .copy p{
+    font-size:14px;
+    margin-bottom:14px;
+  }
+
+  .hero-buttons{
+    gap:9px;
+  }
+
+  .cta{
+    min-height:42px;
+    width:100%;
+    font-size:11px;
+  }
+
+  .visual{
+    min-height:190px;
+  }
+
+  .mur-object{
+    width:160px;
+  }
+
+  .orbit{
+    height:70px;
+    bottom:0;
+  }
+
+  .float-card{
+    display:none;
+  }
+
+  .quick-cards{
+    left:14px;
+    right:14px;
+    bottom:104px;
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  .quick-card{
+    min-height:52px;
+    border-radius:18px;
+    padding:10px 12px;
+    grid-template-columns:38px 1fr;
+  }
+
+  .icon{
+    width:36px;
+    height:36px;
+    border-radius:12px;
+    font-size:18px;
+  }
+
+  .quick-card h3{
+    font-size:12px;
+  }
+
+  .quick-card p{
+    display:block;
+    font-size:11px;
+  }
+
+  .bottom-dock{
+    min-height:78px;
+    width:calc(100% - 18px);
+    border-radius:26px;
+  }
+
+  .dock-btn{
+    height:78px;
+    font-size:8px;
+  }
+
+  .dock-icon{
+    font-size:20px;
+  }
+
+  .sheet{
+    width:100%;
+    max-height:74dvh;
+    border-radius:30px 30px 0 0;
+  }
+
+  .sheet-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .folder{
+    min-height:128px;
+  }
+}
+
+@media (max-width:420px){
+  .copy h1{
+    font-size:48px;
+  }
+
+  .copy h2{
+    font-size:23px;
+  }
+
+  .copy p{
+    font-size:13px;
+  }
+
+  .sheet-grid{
+    grid-template-columns:1fr;
+  }
+
+  .folder{
+    min-height:110px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="logo">
+      <strong>M.U.R.</strong>
+      <span>Mesurer · Utiliser · Réguler</span>
+    </div>
+
+    <div class="top-actions">
+      <button class="pill" data-sheet="methode">Méthode</button>
+      <button class="pill primary" data-sheet="test">Test rapide</button>
+    </div>
+  </header>
+
+  <main class="hero">
+    <section class="copy">
+      <div class="kicker">Système neurovégétatif</div>
+
+      <h1>M.U.R.</h1>
+
+      <h2>
+        Le système neurovégétatif,<br>
+        rendu <span>lisible</span>.
+      </h2>
+
+      <p>
+        Mesurer pour comprendre. Utiliser les bons outils.
+        Réguler pour revenir à l’équilibre au bon moment.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="cta main" data-sheet="methode">Découvrir la méthode</button>
+        <button class="cta ghost" data-sheet="outils">Voir les outils</button>
+      </div>
+    </section>
+
+    <section class="visual" aria-label="Visuel MUR">
+      <div class="orbit"></div>
+
+      <div class="mur-object">
+        <div class="mur-circle"></div>
+
+        <div class="brain-symbol">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Cerveau stylisé MUR">
+            <defs>
+              <linearGradient id="brainGrad" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#79cfff"/>
+                <stop offset="48%" stop-color="#eaf8ff"/>
+                <stop offset="52%" stop-color="#ffd0a0"/>
+                <stop offset="100%" stop-color="#f28b32"/>
+              </linearGradient>
+
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="4" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <path d="M199 74
+              C160 48 103 65 86 111
+              C53 120 40 162 59 191
+              C35 224 50 272 90 284
+              C101 334 166 351 199 319
+              C232 351 297 334 310 284
+              C348 270 365 224 340 191
+              C360 158 342 119 312 111
+              C296 66 238 49 199 74Z"
+              fill="url(#brainGrad)"
+              opacity=".96"
+              filter="url(#glow)" />
+
+            <path d="M200 78 L200 322" stroke="rgba(6,20,38,.55)" stroke-width="5" stroke-linecap="round"/>
+
+            <path d="M117 125 C145 105 170 122 179 151
+                     M91 178 C130 171 161 185 179 214
+                     M111 260 C137 244 164 249 184 278"
+                  fill="none" stroke="rgba(6,20,38,.42)" stroke-width="7" stroke-linecap="round"/>
+
+            <path d="M283 125 C255 105 230 122 221 151
+                     M309 178 C270 171 239 185 221 214
+                     M289 260 C263 244 236 249 216 278"
+                  fill="none" stroke="rgba(6,20,38,.42)" stroke-width="7" stroke-linecap="round"/>
+
+            <circle cx="122" cy="126" r="8" fill="#ffffff"/>
+            <circle cx="92" cy="180" r="7" fill="#ffffff"/>
+            <circle cx="118" cy="262" r="8" fill="#ffffff"/>
+            <circle cx="278" cy="126" r="8" fill="#ffffff"/>
+            <circle cx="308" cy="180" r="7" fill="#ffffff"/>
+            <circle cx="282" cy="262" r="8" fill="#ffffff"/>
+          </svg>
+        </div>
+
+        <div class="float-card blue">
+          <strong>Mesurer</strong>
+          <span>NeuroFlex</span>
+        </div>
+
+        <div class="float-card orange">
+          <strong>Utiliser</strong>
+          <span>Outils courts</span>
+        </div>
+
+        <div class="float-card green">
+          <strong>Réguler</strong>
+          <span>Routines</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="quick-cards" aria-label="Accès rapides">
+    <button class="quick-card" data-sheet="mesurer">
+      <div class="icon">◌</div>
+      <div>
+        <h3>Mesurer</h3>
+        <p>Comprendre votre état.</p>
+      </div>
+    </button>
+
+    <button class="quick-card" data-sheet="utiliser">
+      <div class="icon">✧</div>
+      <div>
+        <h3>Utiliser</h3>
+        <p>Choisir le bon outil.</p>
+      </div>
+    </button>
+
+    <button class="quick-card" data-sheet="reguler">
+      <div class="icon">⌁</div>
+      <div>
+        <h3>Réguler</h3>
+        <p>Installer l’équilibre.</p>
+      </div>
+    </button>
+  </section>
+
+  <nav class="bottom-dock" aria-label="Menu principal">
+    <button class="dock-btn active" data-sheet="accueil">
+      <span class="dock-icon">⌂</span>
+      <span>Accueil</span>
+    </button>
+
+    <button class="dock-btn" data-sheet="methode">
+      <span class="dock-icon">◌</span>
+      <span>Méthode</span>
+    </button>
+
+    <button class="dock-btn" data-sheet="test">
+      <span class="dock-icon">◎</span>
+      <span>Tests</span>
+    </button>
+
+    <button class="dock-btn" data-sheet="outils">
+      <span class="dock-icon">✧</span>
+      <span>Outils</span>
+    </button>
+
+    <button class="dock-btn" data-sheet="contact">
+      <span class="dock-icon">✉</span>
+      <span>Contact</span>
+    </button>
+  </nav>
+
+  <div class="sheet-backdrop" id="backdrop"></div>
+
+  <section class="sheet" id="sheet" aria-live="polite">
+    <div class="handle"></div>
+
+    <div class="sheet-head">
+      <div>
+        <h2 class="sheet-title" id="sheetTitle">La méthode M.U.R.</h2>
+        <p class="sheet-subtitle" id="sheetSubtitle">
+          Une interface simple pour ouvrir les bons dossiers au bon moment.
+        </p>
+      </div>
+
+      <button class="close" id="closeSheet" aria-label="Fermer">×</button>
+    </div>
+
+    <div class="sheet-grid" id="sheetGrid"></div>
+  </section>
+
+</div>
+
+<script>
+const content = {
+  accueil: {
+    title: "Accueil",
+    subtitle: "M.U.R. fonctionne comme une application : une page principale, puis des dossiers qui montent depuis le bas.",
+    folders: [
+      ["◌","Mesurer","Accéder aux tests ki.S, Ici & Maintenant et NeuroFlex."],
+      ["✧","Utiliser","Choisir des exercices courts selon l’état du moment."],
+      ["⌁","Réguler","Installer des routines et agir sur l’environnement."]
+    ]
+  },
+
+  methode: {
+    title: "La méthode M.U.R.",
+    subtitle: "Trois gestes simples : mesurer pour comprendre, utiliser pour agir, réguler pour durer.",
+    folders: [
+      ["◌","Mesurer","Lire son état réel, sans jugement, avec des repères simples."],
+      ["◎","Interpréter","Comprendre si le système a besoin de frein, d’élan ou de stabilité."],
+      ["✧","Utiliser","Choisir le bon exercice au bon moment."],
+      ["⌁","Réguler","Créer un terrain plus stable dans la durée."],
+      ["◒","NeuroFlex","Visualiser la capacité d’adaptation du système."],
+      ["▣","Parcours","Construire des routines adaptées à chaque profil."]
+    ]
+  },
+
+  test: {
+    title: "Tests & NeuroFlex",
+    subtitle: "Un accès rapide pour savoir où l’on en est avant de choisir un outil.",
+    folders: [
+      ["◎","ki.S","Identifier son profil de base : fonceur, posé ou funambule."],
+      ["◒","Ici & Maintenant","Évaluer l’état actuel en quelques questions."],
+      ["⌁","NeuroFlex","Comprendre la souplesse d’adaptation du système."],
+      ["→","Recommandation","Orienter vers les bons exercices selon le résultat."]
+    ]
+  },
+
+  outils: {
+    title: "Outils à découvrir",
+    subtitle: "Des exercices courts, concrets, pensés pour être utilisés dans la vraie vie.",
+    folders: [
+      ["♦","Pause vagale","1 à 2 minutes pour relâcher, respirer et revenir au calme."],
+      ["◆","Tapping EFT","2 à 3 minutes pour ajuster une tension émotionnelle."],
+      ["◌","Respiration","Utiliser l’expiration comme frein du système."],
+      ["☉","Regard ouvert","Passer du regard de chasse au regard de régulation."],
+      ["♬","Chant du merle","Utiliser le son comme levier d’apaisement."],
+      ["▦","Routines","Créer des séquences simples au quotidien."]
+    ]
+  },
+
+  mesurer: {
+    title: "Mesurer",
+    subtitle: "On commence par observer le système pour éviter d’agir au hasard.",
+    folders: [
+      ["◎","ki.S","Profil de fond."],
+      ["◒","Ici & Maintenant","État du moment."],
+      ["⌁","NeuroFlex","Capacité d’adaptation."]
+    ]
+  },
+
+  utiliser: {
+    title: "Utiliser",
+    subtitle: "Le bon outil n’est pas toujours le même : il dépend de l’état du moment.",
+    folders: [
+      ["♦","Freiner","Quand le système est trop haut."],
+      ["✧","Stabiliser","Quand il faut revenir au centre."],
+      ["↑","Activer","Quand il faut retrouver de l’élan."]
+    ]
+  },
+
+  reguler: {
+    title: "Réguler",
+    subtitle: "Réguler, c’est organiser le quotidien pour éviter de rester bloqué dans un état.",
+    folders: [
+      ["☀","Lumière","Utiliser le bon signal au bon moment."],
+      ["♬","Son","Créer un environnement moins agressif."],
+      ["◐","Routines","Donner au corps des repères réguliers."]
+    ]
+  },
+
+  contact: {
+    title: "Contact",
+    subtitle: "Une future zone pour les demandes particulières, les professionnels et les organisations.",
+    folders: [
+      ["✉","Contact","Préparer un formulaire simple."],
+      ["▣","Professionnels","Entrée pour soignants, coachs et éducateurs."],
+      ["◉","Entreprises","Déclinaison QVCT, prévention et ateliers."]
+    ]
+  }
+};
+
+const sheet = document.getElementById("sheet");
+const backdrop = document.getElementById("backdrop");
+const title = document.getElementById("sheetTitle");
+const subtitle = document.getElementById("sheetSubtitle");
+const grid = document.getElementById("sheetGrid");
+const closeBtn = document.getElementById("closeSheet");
+const dockButtons = [...document.querySelectorAll(".dock-btn")];
+
+function openSheet(key){
+  const data = content[key] || content.methode;
+
+  title.textContent = data.title;
+  subtitle.textContent = data.subtitle;
+
+  grid.innerHTML = data.folders.map(item => `
+    <article class="folder">
+      <div>
+        <div class="mini">${item[0]}</div>
+        <strong>${item[1]}</strong>
+        <p>${item[2]}</p>
+      </div>
+    </article>
+  `).join("");
+
+  sheet.classList.add("open");
+  backdrop.classList.add("open");
+
+  dockButtons.forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.sheet === key);
+  });
+}
+
+function closeSheet(){
+  sheet.classList.remove("open");
+  backdrop.classList.remove("open");
+}
+
+document.querySelectorAll("[data-sheet]").forEach(btn => {
+  btn.addEventListener("click", () => openSheet(btn.dataset.sheet));
+});
+
+closeBtn.addEventListener("click", closeSheet);
+backdrop.addEventListener("click", closeSheet);
+
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape") closeSheet();
+});
+</script>
+
+</body>
+</html>
