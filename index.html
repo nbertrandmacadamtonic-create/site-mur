@@ -1,1 +1,938 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>M.U.R. — Responsive</title>
 
+<style>
+:root {
+  --navy:#071426;
+  --navy2:#0d223d;
+  --blue:#58aeea;
+  --orange:#f28b32;
+  --orange2:#ffbf74;
+  --paper:#f5f7fa;
+  --ink:#102033;
+  --muted:#637487;
+  --line:rgba(16,32,51,.08);
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html {
+  scroll-behavior:smooth;
+}
+
+body {
+  margin:0;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+.container {
+  width:min(1240px, calc(100% - 32px));
+  margin:0 auto;
+}
+
+/* HEADER */
+
+.site-header {
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:76px;
+  background:rgba(7,20,38,.88);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.site-header .container {
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.brand {
+  display:flex;
+  flex-direction:column;
+  line-height:1;
+}
+
+.brand strong {
+  font-size:clamp(28px,3vw,42px);
+  font-weight:950;
+  letter-spacing:.08em;
+  background:linear-gradient(90deg,#f28b32 0%,#ffd6a4 35%,#67b8ef 72%,#caedff 100%);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.brand span {
+  margin-top:6px;
+  font-size:10px;
+  color:#a6b7c9;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+}
+
+.top-nav {
+  display:flex;
+  gap:clamp(14px,2vw,34px);
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  color:rgba(255,255,255,.86);
+  font-size:12px;
+  font-weight:850;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.top-nav .cta {
+  border:1px solid rgba(242,139,50,.7);
+  border-radius:999px;
+  padding:12px 20px;
+}
+
+/* HERO */
+
+.hero {
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  background:
+    radial-gradient(circle at 78% 36%, rgba(242,139,50,.28), transparent 24%),
+    radial-gradient(circle at 52% 38%, rgba(88,174,234,.26), transparent 24%),
+    linear-gradient(90deg, var(--navy) 0%, var(--navy) 44%, var(--navy2) 100%);
+}
+
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.34;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.8) 0 1px, transparent 1.6px),
+    radial-gradient(circle, rgba(255,153,68,.62) 0 1px, transparent 1.6px);
+  background-size:120px 120px, 170px 170px;
+  mask-image:linear-gradient(90deg, transparent 0%, black 34%, black 100%);
+}
+
+.hero-inner {
+  position:relative;
+  z-index:1;
+  min-height:560px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:32px;
+  align-items:center;
+  padding:44px 0 56px;
+}
+
+.hero-copy h1 {
+  margin:0;
+  font-size:clamp(68px,10vw,120px);
+  line-height:.86;
+  font-weight:950;
+  letter-spacing:.04em;
+}
+
+.hero-copy h2 {
+  margin:14px 0;
+  font-size:clamp(28px,3vw,42px);
+  line-height:1.05;
+  font-weight:850;
+}
+
+.hero-copy .accent {
+  color:var(--orange2);
+}
+
+.hero-copy p {
+  max-width:640px;
+  margin:0 0 28px;
+  color:rgba(247,251,255,.86);
+  font-size:clamp(15px,1.2vw,18px);
+  line-height:1.5;
+}
+
+.hero-actions {
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:0 22px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  transition:.25s ease;
+}
+
+.btn:hover {
+  transform:translateY(-2px);
+}
+
+.btn-primary {
+  color:#fff;
+  background:linear-gradient(90deg,var(--orange),var(--blue));
+  box-shadow:0 14px 36px rgba(242,139,50,.22);
+}
+
+.btn-secondary {
+  color:#fff;
+  border:1px solid rgba(255,255,255,.42);
+  background:rgba(255,255,255,.04);
+}
+
+/* VISUEL PRINCIPAL */
+
+.hero-visual {
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:360px;
+}
+
+.hero-poster {
+  width:min(380px, 88%);
+  aspect-ratio:3/4;
+  border-radius:30px;
+  overflow:hidden;
+  background:#111;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.5),
+    0 0 70px rgba(242,139,50,.18),
+    inset 0 0 0 1px rgba(255,255,255,.15);
+  transform:perspective(1200px) rotateY(-4deg) rotateX(2deg);
+}
+
+.hero-poster img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-orbit {
+  position:absolute;
+  width:78%;
+  height:120px;
+  bottom:18px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.2);
+  transform:perspective(800px) rotateX(74deg);
+  box-shadow:0 0 34px rgba(88,174,234,.25), inset 0 0 24px rgba(242,139,50,.18);
+  z-index:-1;
+}
+
+/* SECTIONS */
+
+section.block {
+  padding:32px 0;
+}
+
+.section-title {
+  margin:0 0 18px;
+  text-align:center;
+  color:#17324e;
+  font-size:15px;
+  font-weight:950;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+
+/* MESURER UTILISER REGULER */
+
+.triad-wrap {
+  background:#fff;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.triad {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  padding:24px 0;
+}
+
+.triad-card {
+  position:relative;
+  overflow:hidden;
+  min-height:260px;
+  border-radius:24px;
+  padding:26px 24px 22px;
+  background:linear-gradient(135deg,#fff,#eef7ff);
+  box-shadow:0 10px 30px rgba(7,20,38,.05);
+  border:1px solid rgba(16,32,51,.06);
+}
+
+.triad-card:nth-child(2) {
+  background:linear-gradient(135deg,#fffdfb,#fff1e1);
+}
+
+.triad-card:nth-child(3) {
+  background:linear-gradient(135deg,#fffaf5,#fff);
+}
+
+.triad-card h3 {
+  margin:0;
+  font-size:clamp(24px,2vw,30px);
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.triad-card:nth-child(1) h3 {
+  color:#2e92d1;
+}
+
+.triad-card:nth-child(2) h3 {
+  color:#4b6f8f;
+}
+
+.triad-card:nth-child(3) h3 {
+  color:#e77b2c;
+}
+
+.triad-card h3::after {
+  content:"";
+  display:block;
+  width:54px;
+  height:2px;
+  margin-top:8px;
+  background:currentColor;
+}
+
+.triad-card p {
+  width:min(58%,260px);
+  margin:14px 0 0;
+  color:#5c6b79;
+  font-size:15px;
+  line-height:1.45;
+}
+
+.triad-art {
+  position:absolute;
+  right:22px;
+  bottom:22px;
+  width:38%;
+  aspect-ratio:1.1;
+  opacity:.92;
+}
+
+.art-brain {
+  background:
+    radial-gradient(circle at 50% 48%, #d2efff 0 22%, transparent 23%),
+    radial-gradient(circle at 50% 50%, rgba(67,156,220,.34), transparent 58%);
+  clip-path:polygon(10% 48%,24% 14%,57% 8%,86% 28%,83% 65%,61% 84%,30% 78%,12% 62%);
+}
+
+.art-flow {
+  border-radius:44%;
+  background:
+    radial-gradient(circle at 64% 52%, #ff9b3d 0 8px, transparent 9px),
+    radial-gradient(circle at 46% 50%, #9ed8fb 0 34px, transparent 35px),
+    radial-gradient(circle at 25% 30%, rgba(57,159,226,.27), transparent 22%),
+    radial-gradient(circle at 75% 31%, rgba(242,139,50,.28), transparent 24%);
+}
+
+.art-scale::before {
+  content:"⚖";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:#708397;
+  font-size:clamp(86px,7vw,110px);
+  text-shadow:
+    32px 0 30px rgba(242,139,50,.22),
+    -32px 0 28px rgba(76,167,232,.22);
+}
+
+.triad-arrow {
+  position:absolute;
+  left:24px;
+  bottom:22px;
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  color:#1b344f;
+  border-radius:50%;
+  border:1px solid rgba(16,32,51,.24);
+  background:rgba(255,255,255,.72);
+  font-weight:900;
+}
+
+/* OUTILS */
+
+.tools {
+  background:var(--paper);
+}
+
+.tool-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+}
+
+.tool-card {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  min-height:92px;
+  padding:16px 20px;
+  border-radius:18px;
+  background:#fff;
+  border:1px solid rgba(16,32,51,.06);
+  box-shadow:0 20px 60px rgba(7,20,38,.08);
+}
+
+.tool-main {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  min-width:0;
+}
+
+.badge {
+  width:54px;
+  height:54px;
+  flex:0 0 54px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:22px;
+  background:linear-gradient(135deg,#bd2631,#ff9148);
+}
+
+.tool-card:nth-child(2) .badge {
+  background:linear-gradient(135deg,#d87519,#ffc166);
+}
+
+.tool-card h4 {
+  margin:0 0 4px;
+  color:#15304d;
+  font-size:17px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+
+.tool-card p {
+  margin:0;
+  color:#697887;
+  font-size:13px;
+  line-height:1.4;
+}
+
+/* ORGANISATIONS */
+
+.org-band {
+  background:rgba(255,255,255,.86);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.org-content {
+  display:grid;
+  grid-template-columns:180px 1fr auto;
+  align-items:center;
+  gap:28px;
+  padding:20px 0;
+}
+
+.org-content strong {
+  color:#29425c;
+  font-size:14px;
+  line-height:1.3;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+
+.org-content p {
+  margin:0;
+  color:#5b6976;
+  font-size:14px;
+  line-height:1.45;
+}
+
+.logos {
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  color:#99a4ae;
+  font-size:19px;
+  font-weight:900;
+  letter-spacing:.03em;
+}
+
+/* MENU BAS */
+
+.bottom-holder {
+  padding:18px 0 22px;
+  background:var(--paper);
+}
+
+.bottomnav {
+  position:relative;
+  width:min(1040px,100%);
+  margin:0 auto;
+  min-height:104px;
+  border-radius:30px;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 8px 34px rgba(8,20,38,.1), inset 0 0 0 1px rgba(255,255,255,.9);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  align-items:center;
+}
+
+.bottomnav::before {
+  content:"⌃";
+  position:absolute;
+  top:-32px;
+  left:50%;
+  transform:translateX(-50%);
+  width:104px;
+  height:48px;
+  border-radius:52px 52px 0 0;
+  background:rgba(255,255,255,.96);
+  display:grid;
+  place-items:center;
+  color:#213650;
+  font-size:22px;
+  box-shadow:0 -12px 32px rgba(8,20,38,.08);
+}
+
+.bottomnav::after {
+  content:"";
+  position:absolute;
+  top:16px;
+  left:50%;
+  transform:translateX(-50%);
+  width:40px;
+  height:4px;
+  border-radius:999px;
+  background:#c6d1dd;
+}
+
+.bottom-item {
+  position:relative;
+  min-height:78px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  color:#53687d;
+  border-right:1px solid rgba(16,32,51,.12);
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.bottom-item:last-child {
+  border-right:none;
+}
+
+.bottom-item .ico {
+  font-size:24px;
+  line-height:1;
+}
+
+.bottom-item.active {
+  color:#3b92e8;
+}
+
+.bottom-item.active::after {
+  content:"";
+  position:absolute;
+  bottom:10px;
+  width:42px;
+  height:3px;
+  border-radius:999px;
+  background:#3b92e8;
+}
+
+.bottom-center {
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-46%);
+  width:78px;
+  height:78px;
+  border-radius:50%;
+  background:#fff;
+  border:1px solid rgba(16,32,51,.1);
+  box-shadow:0 10px 34px rgba(8,20,38,.1);
+  display:grid;
+  place-items:center;
+  color:var(--orange);
+  font-weight:950;
+  letter-spacing:.08em;
+  pointer-events:none;
+}
+
+/* RESPONSIVE TABLETTE */
+
+@media (max-width:1100px) {
+  .hero-inner {
+    grid-template-columns:1fr .92fr;
+    gap:24px;
+  }
+
+  .org-content {
+    grid-template-columns:180px 1fr;
+  }
+
+  .logos {
+    grid-column:1 / -1;
+    justify-content:flex-start;
+  }
+}
+
+/* RESPONSIVE IPAD / MOBILE */
+
+@media (max-width:900px) {
+  .top-nav {
+    display:none;
+  }
+
+  .hero-inner {
+    grid-template-columns:1fr;
+    gap:22px;
+    padding:28px 0 36px;
+    min-height:auto;
+  }
+
+  .hero-copy p {
+    max-width:none;
+  }
+
+  .hero-poster {
+    width:min(330px,80vw);
+  }
+
+  .triad {
+    grid-template-columns:1fr;
+  }
+
+  .triad-card p {
+    width:min(64%,320px);
+  }
+
+  .tool-grid {
+    grid-template-columns:1fr;
+  }
+
+  .org-content {
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .bottom-center {
+    display:none;
+  }
+
+  .bottomnav::before {
+    width:88px;
+  }
+}
+
+/* RESPONSIVE IPHONE */
+
+@media (max-width:640px) {
+  .container {
+    width:min(100% - 24px,1240px);
+  }
+
+  .hero-copy h1 {
+    font-size:58px;
+  }
+
+  .hero-copy h2 {
+    font-size:28px;
+  }
+
+  .btn {
+    width:100%;
+  }
+
+  .hero-actions {
+    flex-direction:column;
+  }
+
+  .triad-card p {
+    width:60%;
+    font-size:14px;
+  }
+
+  .triad-art {
+    width:34%;
+  }
+
+  .logos {
+    gap:16px;
+    font-size:16px;
+  }
+
+  .bottom-item {
+    font-size:8px;
+  }
+
+  .bottom-item .ico {
+    font-size:21px;
+  }
+}
+
+@media (max-width:430px) {
+  .brand span {
+    display:none;
+  }
+
+  .hero-copy h1 {
+    font-size:50px;
+  }
+
+  .hero-copy h2 {
+    font-size:24px;
+  }
+
+  .triad-card p {
+    width:66%;
+  }
+
+  .triad-art {
+    width:32%;
+  }
+
+  .bottomnav {
+    border-radius:22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="#accueil" class="brand">
+      <strong>M.U.R.</strong>
+      <span>Mesurer · Utiliser · Réguler</span>
+    </a>
+
+    <nav class="top-nav">
+      <a href="#methode">La méthode</a>
+      <a href="#neuroflex">NeuroFlex</a>
+      <a href="#exercices">Exercices</a>
+      <a href="#apropos">À propos</a>
+      <a class="cta" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="accueil">
+    <div class="container hero-inner">
+
+      <div class="hero-copy">
+        <h1>M.U.R.</h1>
+        <h2>Le système neurovégétatif,<br>rendu <span class="accent">lisible</span>.</h2>
+        <p>
+          Mesurer pour comprendre. Utiliser des outils concrets.
+          Réguler pour retrouver équilibre, clarté et performance.
+          Une méthode simple, progressive et accessible.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#methode">Découvrir la méthode</a>
+          <a class="btn btn-secondary" href="#neuroflex">Faire le test rapide</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-orbit"></div>
+
+        <div class="hero-poster">
+          <!-- IMPORTANT :
+          Remplace le lien ci-dessous par ton image MUR hébergée sur GitHub ou dans ton dépôt.
+          Exemple : images/mur-visuel.jpg
+          -->
+          <img src="images/mur-visuel.jpg" alt="Illustration M.U.R.">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="triad-wrap block" id="methode">
+    <div class="container">
+      <div class="triad">
+
+        <article class="triad-card">
+          <h3>Mesurer</h3>
+          <p>Comprendre votre état avec clarté et mieux lire votre fonctionnement.</p>
+          <div class="triad-art art-brain"></div>
+          <a href="#neuroflex" class="triad-arrow">→</a>
+        </article>
+
+        <article class="triad-card">
+          <h3>Utiliser</h3>
+          <p>Mobiliser les bons outils au bon moment, selon votre état réel.</p>
+          <div class="triad-art art-flow"></div>
+          <a href="#exercices" class="triad-arrow">→</a>
+        </article>
+
+        <article class="triad-card">
+          <h3>Réguler</h3>
+          <p>Revenir à l’équilibre, pas à pas, avec des routines plus durables.</p>
+          <div class="triad-art art-scale"></div>
+          <a href="#apropos" class="triad-arrow">→</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="tools block" id="exercices">
+    <div class="container">
+      <h3 class="section-title">Outils à découvrir</h3>
+
+      <div class="tool-grid">
+
+        <a href="#" class="tool-card">
+          <div class="tool-main">
+            <div class="badge">♦</div>
+            <div>
+              <h4>La pause vagale</h4>
+              <p>Active ton calme en 1 à 2 minutes</p>
+            </div>
+          </div>
+          <div>→</div>
+        </a>
+
+        <a href="#" class="tool-card">
+          <div class="tool-main">
+            <div class="badge">◆</div>
+            <div>
+              <h4>Le tapping (EFT)</h4>
+              <p>Régulation · Ajuster · Relâcher</p>
+            </div>
+          </div>
+          <div>→</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="org-band block" id="apropos">
+    <div class="container org-content">
+      <strong>Pour les<br>organisations</strong>
+      <p>
+        Une méthode conçue pour renforcer la clarté, la résilience et la performance durable des équipes.
+      </p>
+
+      <div class="logos">
+        <span>THALES</span>
+        <span>airbus</span>
+        <span>L’ORÉAL</span>
+        <span>DANONE</span>
+        <span>MICHELIN</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottom-holder" id="contact">
+    <div class="container">
+
+      <nav class="bottomnav">
+        <a class="bottom-item active" href="#accueil">
+          <span class="ico">⌂</span>
+          <span>Accueil</span>
+        </a>
+
+        <a class="bottom-item" href="#methode">
+          <span class="ico">◌</span>
+          <span>La méthode</span>
+        </a>
+
+        <a class="bottom-item" href="#neuroflex">
+          <span class="ico">⌁</span>
+          <span>NeuroFlex</span>
+        </a>
+
+        <a class="bottom-item" href="#exercices">
+          <span class="ico">✧</span>
+          <span>Exercices</span>
+        </a>
+
+        <a class="bottom-item" href="#contact">
+          <span class="ico">✉</span>
+          <span>Contact</span>
+        </a>
+
+        <div class="bottom-center">M.U.R.</div>
+      </nav>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+const navLinks = [...document.querySelectorAll('.bottom-item')];
+
+const sections = navLinks
+  .map(a => document.querySelector(a.getAttribute('href')))
+  .filter(Boolean);
+
+function updateActive() {
+  let current = sections[0];
+
+  for (const section of sections) {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 140) {
+      current = section;
+    }
+  }
+
+  navLinks.forEach(link => {
+    link.classList.toggle(
+      'active',
+      link.getAttribute('href') === '#' + current.id
+    );
+  });
+}
+
+window.addEventListener('scroll', updateActive, { passive:true });
+updateActive();
+</script>
+
+</body>
+</html>
