@@ -1,2 +1,3 @@
-function toggleLanguage(){document.body.classList.toggle('english');localStorage.setItem('mur-language',document.body.classList.contains('english')?'en':'fr');}
-document.addEventListener('DOMContentLoaded',()=>{if(localStorage.getItem('mur-language')==='en')document.body.classList.add('english');});
+function setLanguage(language){const english=language==='en';document.body.classList.toggle('english',english);document.documentElement.lang=english?'en':'fr';document.querySelectorAll('.fr').forEach(el=>el.hidden=english);document.querySelectorAll('.en').forEach(el=>el.hidden=!english);localStorage.setItem('mur-language',language)}
+function toggleLanguage(){setLanguage(document.body.classList.contains('english')?'fr':'en')}
+document.addEventListener('DOMContentLoaded',()=>{setLanguage(localStorage.getItem('mur-language')==='en'?'en':'fr');new MutationObserver(()=>setLanguage(document.body.classList.contains('english')?'en':'fr')).observe(document.body,{childList:true,subtree:true})});
